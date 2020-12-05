@@ -5,6 +5,8 @@
  */
 package controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import models.Administradores;
 import models.Conexion;
 import models.RegistroAdminValidar;
@@ -48,7 +50,8 @@ public class RegistroController {
     public ModelAndView form(
             @ModelAttribute("registrar") Administradores regAdmon,
             BindingResult result,
-            SessionStatus status
+            SessionStatus status,
+            HttpServletRequest request
     ) {
         ModelAndView mav = new ModelAndView();
         this.registroValidar.validate(regAdmon, result);
@@ -62,9 +65,11 @@ public class RegistroController {
             this.jdbcTemplate.update("insert into administradores (nombre,apellido,edad,correo,contraseña)"
                     + "values(?,?,?,?,aes_encrypt(?,'3kgta2'))", regAdmon.getNombre(), regAdmon.getApellido(), regAdmon.getEdad(),
                     regAdmon.getCorreo(), regAdmon.getContraseña());
-            mav.setViewName("home");
-            mav.addObject("nombre", regAdmon.getNombre());
-            return mav;
+
+            HttpSession session = request.getSession();
+            session.setAttribute("username", regAdmon);
+
+            return new ModelAndView("redirect:/Admin/home.htm");
         }
     }
 
