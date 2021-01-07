@@ -80,10 +80,10 @@
                             <div class="carousel-item active">
                                 <img class="d-block w-100" alt="Carousel Bootstrap First" src="https://www.layoutit.com/img/sports-q-c-1600-500-1.jpg"/>
                                 <div class="carousel-caption">
-                                    <h4 style="color: black;">
+                                    <h4>
                                         Sociales
                                     </h4>
-                                    <p style="color: black;">
+                                    <p>
                                         Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
                                     </p>
                                 </div>
